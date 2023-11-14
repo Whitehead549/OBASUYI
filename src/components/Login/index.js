@@ -71,7 +71,7 @@ const Login = ({ setIsAuthenticated }) => {
   return (
     <div style={containerStyle}>
       <form style={formStyle} onSubmit={handleLogin}>
-      <h1 style={{ fontStyle: 'italic' }}>Care Administrator Login</h1>
+      <h1 style={{ fontStyle: 'italic' }}>OBASUYI DataBase</h1>
         <label htmlFor="email">Email</label>
         <input
           id="email"

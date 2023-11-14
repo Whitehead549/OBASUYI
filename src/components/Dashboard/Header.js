@@ -11,7 +11,7 @@ const Header = ({ setIsAdding, setIsAuthenticated }) => {
 
   return (
     <header>
-      <h1 style={h1Style}>OBASUYI StepHaineE Database</h1>
+      <h1 style={h1Style}>OBASUYI StepHainE DB</h1>
       <div style={{ marginTop: '30px', marginBottom: '18px' }}>
         <button onClick={() => setIsAdding(true)}>Add Patient</button>
         <Logout setIsAuthenticated={setIsAuthenticated} />
