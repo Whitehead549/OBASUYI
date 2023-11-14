@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import Swal from 'sweetalert2';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+
+import backgroundImage from './apothecary-8128318_1280.jpg';
 
 const Login = ({ setIsAuthenticated }) => {
-  const adminEmail = 'admin@example.com';
-  const adminPassword = 'qwerty';
-
-  const [email, setEmail] = useState('admin@example.com');
+  const [email, setEmail] = useState();
   const [password, setPassword] = useState('qwerty');
 
-  const handleLogin = e => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    if (email === adminEmail && password === adminPassword) {
+    const auth = getAuth();
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
       Swal.fire({
         timer: 1500,
         showConfirmButton: false,
@@ -19,9 +21,7 @@ const Login = ({ setIsAuthenticated }) => {
           Swal.showLoading();
         },
         willClose: () => {
-          localStorage.setItem('is_authenticated', true);
           setIsAuthenticated(true);
-
           Swal.fire({
             icon: 'success',
             title: 'Successfully logged in!',
@@ -30,7 +30,7 @@ const Login = ({ setIsAuthenticated }) => {
           });
         },
       });
-    } else {
+    } catch (error) {
       Swal.fire({
         timer: 1500,
         showConfirmButton: false,
@@ -49,10 +49,29 @@ const Login = ({ setIsAuthenticated }) => {
     }
   };
 
+  const containerStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh', // 100% of the viewport height
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+  };
+
+  const formStyle = {
+    background: 'rgba(255, 255, 255, 0.8)', // Semi-transparent white background
+    padding: '20px',
+    borderRadius: '8px',
+    width: '500px',
+    textAlign: 'center',
+  };
+
   return (
-    <div className="small-container">
-      <form onSubmit={handleLogin}>
-        <h1>Admin Login</h1>
+    <div style={containerStyle}>
+      <form style={formStyle} onSubmit={handleLogin}>
+      <h1 style={{ fontStyle: 'italic' }}>Care Administrator Login</h1>
         <label htmlFor="email">Email</label>
         <input
           id="email"
@@ -78,3 +97,4 @@ const Login = ({ setIsAuthenticated }) => {
 };
 
 export default Login;
+

@@ -3,9 +3,9 @@ import React from 'react';
 const Table = ({ employees, handleEdit, handleDelete }) => {
 
   const formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: null,
+    // style: 'currency',
+    // currency: 'USD',
+    // minimumFractionDigits: null,
   });
 
   return (
@@ -13,12 +13,17 @@ const Table = ({ employees, handleEdit, handleDelete }) => {
       <table className="striped-table">
         <thead>
           <tr>
-            <th>Id</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Salary</th>
-            <th>Date</th>
+            {/* <th>Id</th> */}
+            <th>Candidate</th>
+            <th>age</th>
+            <th>DateofBirth</th>
+            <th>HealthRecord</th> {/* New column header */}    
+            <th>Guardian</th>
+            <th>G_Contact</th>                 
+            <th className="email-header">E.address</th>         
+             <th>CareGiver</th>
+             <th>CG_Contact</th>
+            <th>Session_Schedule</th> {/* Add a new column header */}
             <th colSpan={2} className="text-center">
               Actions
             </th>
@@ -28,12 +33,18 @@ const Table = ({ employees, handleEdit, handleDelete }) => {
           {employees ? (
             employees.map((employee, i) => (
               <tr key={employee.id}>
-                <td>{employee.id}</td>
-                <td>{employee.firstName}</td>
-                <td>{employee.lastName}</td>
-                <td>{employee.email}</td>
-                <td>{formatter.format(employee.salary)}</td>
-                <td>{employee.date} </td>
+                {/* <td>{employee.id}</td> */}
+                <td>{employee.Candidate}</td>
+                <td>{formatter.format(employee.Age)}</td>
+                <td>{employee.date}</td>
+                <td>{employee.diagnosis}</td> {/* Corresponding data cell */}  
+                <td>{employee.gurdName}</td>
+                <td>{employee.contact}</td>
+                <td>{employee.email}</td>              
+                <td>{employee.caregiver}</td>
+                <td>{employee.CG_contact}</td>
+                <td>{employee.sessions}</td>
+                
                 <td className="text-right">
                   <button
                     onClick={() => handleEdit(employee.id)}
@@ -54,10 +65,11 @@ const Table = ({ employees, handleEdit, handleDelete }) => {
             ))
           ) : (
             <tr>
-              <td colSpan={7}>No Employees</td>
+              <td colSpan={9}>Please wait loading...</td> {/* Adjust the colspan to match the number of columns */}
             </tr>
           )}
         </tbody>
+
       </table>
     </div>
   );

@@ -157,6 +157,11 @@ img {
   border-style: none;
 }
 
+.email-header {
+  padding-left: 40px; /* Add left padding to create space for Email header */
+}
+
+
 /* Forms
    ========================================================================== */
 /**
@@ -1114,6 +1119,18 @@ caption {
 .striped-table tbody tr:nth-child(odd) {
   background-color: #f8f8f8;
 }
+
+.wide-table {
+  width: 100%; /* Adjust the width as needed */
+  /* You may want to add other styling here, like borders and spacing. */
+}
+
+/* Add this to adjust the header and cell widths */
+.wide-table th, .wide-table td {
+  width: auto; /* You can use a specific width in pixels or percentage */
+  /* Add other styles if needed */
+}
+
 
 .contain-table {
   overflow-x: auto;
